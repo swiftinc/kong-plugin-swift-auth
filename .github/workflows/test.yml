@@ -1,0 +1,31 @@
+name: "Test"
+concurrency:
+  group: ${{ github.workflow }} ${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+on:
+  pull_request: {}
+  push:
+    branches:
+    - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        kongVersion:
+        - "3.7.x"
+        - "dev"
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Replace consumer key
+      run: sed -i 's/consumer_key = "__CONSUMER_KEY__"/consumer_key = "${{ vars.CONSUMER_KEY }}"/g' spec/swift-auth/01-integration_spec.lua
+    - name: Replace consumer secret
+      run: sed -i 's/consumer_secret = "__CONSUMER_SECRET__"/consumer_secret = "${{ secrets.CONSUMER_SECRET }}"/g' spec/swift-auth/01-integration_spec.lua
+    - name: Tests
+      uses: Kong/kong-pongo-action@v1
+      with:
+        pongo_version: master
+        kong_version: ${{ matrix.kongVersion }}
+    - run: pongo run
