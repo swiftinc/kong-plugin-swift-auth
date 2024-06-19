@@ -1,3 +1,7 @@
+[![Test](https://github.com/swiftinc/kong-plugin-swift-auth/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/swiftinc/kong-plugin-swift-auth/actions/workflows/test.yml)
+
+[![Lint](https://github.com/swiftinc/kong-plugin-swift-auth/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/swiftinc/kong-plugin-swift-auth/actions/workflows/lint.yml)
+
 # Kong Swift OAuth plugin
 
 This plugin requests a Swift OAuth2 token and adds the retrieved OAuth access token into
