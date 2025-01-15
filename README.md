@@ -78,3 +78,13 @@ The above command will automatically build the test image and start the test env
 ```
 pongo down
 ```
+
+use pongo pack to pack the plugin into a rock (no need to upload to LuaRocks)
+then do pongo shell and in the shell do
+
+pongo up --expose
+luarocks install /kong-plugin/kong-plugin-swift-auth-1.0.0-1.all.rock
+export KONG_PLUGINS=bundled,kong-plugin-swift-auth
+kong migrations bootstrap
+kong reload
+
