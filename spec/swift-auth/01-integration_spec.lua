@@ -145,7 +145,7 @@ for _, strategy in helpers.all_strategies() do if strategy ~= "cassandra" and st
 
     describe("request", function()
       it("Swift Pre-val request", function()
-        local res = client:post("/swift-preval-pilot/v2/accounts/verification", {
+        local res = client:post("/swift-preval/v2/accounts/verification", {
           body = {
             ["correlation_identifier"] = "112211221122",
             ["context"] = "BENR",
@@ -167,7 +167,7 @@ for _, strategy in helpers.all_strategies() do if strategy ~= "cassandra" and st
       end)
 
       it("Swift gpi request", function()
-        local res = client:get("/swift-apitracker/v5/payments/97ed4827-7b6f-4491-a06f-b548d5a7512d/transactions", {
+        local res = client:get("/swift-apitracker/v6/payments/97ed4827-7b6f-4491-a06f-b548d5a7512d/transactions", {
           headers = {
             ["Content-Type"] = "application/json",
             ["apiKey"] = "secret"
