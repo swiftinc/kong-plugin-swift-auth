@@ -18,7 +18,7 @@ jobs:
         - "dev"
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Replace consumer key
       run: sed -i 's/consumer_key = "__CONSUMER_KEY__"/consumer_key = "${{ vars.CONSUMER_KEY }}"/g' spec/swift-auth/01-integration_spec.lua
     - name: Replace consumer secret
